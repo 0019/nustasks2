@@ -1,0 +1,20 @@
+<!--
+  Generated template for the TasksPagePage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-navbar *navbar>
+  <ion-title>tasksPage</ion-title>
+</ion-navbar>
+
+<ion-content padding class="tasks-page">
+	<button secondary (click)="addTask()">Add Task</button>
+	<ion-card *ngFor="#task of tasks">
+	  <ion-card-header>{{task.Title}}</ion-card-header>
+		<ion-item>
+		Due: {{task.Due}}<br /> 
+		Course: {{task.Syncroll}}
+		</ion-item>
+	</ion-card>
+</ion-content>

@@ -1,0 +1,32 @@
+<!--
+  Generated template for the AddTask component.
+
+  See https://angular.io/docs/ts/latest/api/core/ComponentMetadata-class.html
+  for more info on Angular 2 Components.
+-->
+<ion-item>
+	<ion-label>Course</ion-label>
+	<ion-input type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+	<ion-label>Task Title</ion-label>
+	<ion-input type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+	<ion-label>Details</ion-label>
+	<ion-input type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+	<ion-label>Due Date</ion-label>
+	<ion-datetime displayFormat="DDDD DD/MM/YYYY" pickerFormat="MMM DD"></ion-datetime>
+</ion-item>
+
+<ion-item>
+	<ion-label>Due Time</ion-label>
+	<ion-datetime displayFormat="HH:mm" pickerFormat="HH mm"></ion-datetime>
+</ion-item>
+
+<button secondary (click)="close()">Done</button>
