@@ -13,10 +13,10 @@
 <ion-content padding class="tasks-page">
 	<button block secondary (click)="addTask()">Add Task</button>
 	<button block secondary (click)="loadTasks()">Refresh</button>
-	<ion-card *ngFor="#task of tasks">
+	<ion-card *ngFor="let task of tasks">
 	  <ion-card-header>{{task.Title}}</ion-card-header>
 		<ion-item>
-		Due: {{task.Due}}<br /> 
+		Due: {{task.Duedate}} {{task.Duetime}}<br /> 
 		Course: {{task.Syncroll}}
 		</ion-item>
 	</ion-card>

@@ -14,4 +14,9 @@ export class SettingsPage {
   constructor(private nav: NavController) {
     this.nav = nav;
   }
+
+  logout() {
+  	window.localStorage.removeItem('token');
+	this.nav.pop();
+  }
 }

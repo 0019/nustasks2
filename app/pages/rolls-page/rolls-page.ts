@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {RollsService} from '../../providers/rolls-service/rolls-service';
+import {MyProvider} from '../../providers/my-provider/my-provider';
 
 /*
   Generated class for the RollsPagePage page.
@@ -10,12 +10,11 @@ import {RollsService} from '../../providers/rolls-service/rolls-service';
 */
 @Component({
   templateUrl: 'build/pages/rolls-page/rolls-page.html',
-  providers: [RollsService]
 })
 export class RollsPage {
   private rolls: any;
 
-  constructor(private nav: NavController, private rollsService: RollsService) {
+  constructor(private nav: NavController, private myProvider: MyProvider) {
   }
 
   onPageLoaded() {
@@ -23,7 +22,7 @@ export class RollsPage {
   }
 
   loadRolls() {
-  	this.rollsService.load().then(data => {
+  	this.myProvider.loadRolls().then(data => {
 		this.rolls = data[0].syncrolls;
 		console.log(this.rolls);
 	});

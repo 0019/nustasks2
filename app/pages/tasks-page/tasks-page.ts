@@ -1,7 +1,7 @@
 // Need to validate token
 import {Component} from '@angular/core';
 import {Modal, NavController} from 'ionic-angular';
-import {TasksService} from '../../providers/tasks-service/tasks-service';
+import {MyProvider} from '../../providers/my-provider/my-provider';
 import {AddTask} from '../../pages/add-task/add-task';
 
 //import {Modal, Page, NavController} from 'ionic-angular';
@@ -13,13 +13,12 @@ import {AddTask} from '../../pages/add-task/add-task';
 */
 @Component({
   templateUrl: 'build/pages/tasks-page/tasks-page.html',
-  providers: [TasksService]
 })
 
 export class TasksPage {
   public tasks: any;
 
-  constructor(private nav: NavController, public tasksService: TasksService) {
+  constructor(private nav: NavController, public myProvider: MyProvider) {
   }
 
   onPageLoaded() {
@@ -28,10 +27,10 @@ export class TasksPage {
 
   loadTasks() {
 	var arr = [];
-  	this.tasksService.load().then(data => {
-		data.forEach(function(roll) {
-			arr = arr.concat(roll);
-		});
+  	this.myProvider.loadTasks().then(data => {
+		for (var i = 0; i < (<any>data).length; i++) {
+			arr = arr.concat(data[i]);
+		}
 		this.tasks = arr;
 	});
   }

@@ -25,23 +25,30 @@ export class LoginPage {
   }
 
   onPageLoaded() {
-	var timer = setInterval(() => {
-		if (window.localStorage.getItem('token').length > 10) {
-			alert('got token in login page');
-			if (typeof this.ivleRef != 'undefined')
-				this.ivleRef.close();
-		  	clearInterval(timer);
-			this.nav.push(TabsPage);
-		}
-	}, 500);
+	if (window.localStorage.getItem('token').length > 0) {
+		this.nav.push(TabsPage);
+	}
+  }
+
+  checkLoginStatus() {
   }
 
   authenticate() {
-	this.token = null;
 	var target = '_blank';
 	var options = 'location=yes';
 	var url = this.url;
 	this.ivleRef = window.open(url, target, options);
+	var timer = setInterval(() => {
+		if (typeof this.ivleRef == 'undefined') {
+		  	clearInterval(timer);
+		}
+		if (window.localStorage.getItem('token').length > 10) {
+		  	clearInterval(timer);
+			if (typeof this.ivleRef != 'undefined')
+				this.ivleRef.close();
+			this.nav.push(TabsPage); //it must have pushed a few times here. remember the bug
+		}
+	}, 100);
   }
 /*
   handleOpenUrl(url) {

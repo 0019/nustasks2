@@ -4,11 +4,17 @@
   See https://angular.io/docs/ts/latest/api/core/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
+<ion-header>
+	<ion-navbar>
+		<ion-title>New Task</ion-title>
+	</ion-navbar>
+</ion-header>
+
 <ion-content>
 <ion-item>
 	<ion-label>Course</ion-label>
 	<ion-select [(ngModel)]="course">
-		<ion-option *ngFor="#roll of rolls">
+		<ion-option *ngFor="let roll of rolls" value="{{roll}}">
 			{{roll}}
 		</ion-option>
 	</ion-select>
@@ -35,5 +41,5 @@
 </ion-item>
 
 <button block secondary (click)="submit()">Submit</button>
-<button block danger (click)="cancel()">Submit</button>
+<button block danger (click)="cancel()">Cancel</button>
 </ion-content>

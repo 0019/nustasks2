@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Modal, NavController, ViewController} from 'ionic-angular';
-import {RollsService} from '../../providers/rolls-service/rolls-service';
+import {MyProvider} from '../../providers/my-provider/my-provider';
 import {AddTaskService} from '../../providers/add-task-service/add-task-service';
 
 /*
@@ -11,7 +11,7 @@ import {AddTaskService} from '../../providers/add-task-service/add-task-service'
 */
 @Component({
   templateUrl: 'build/pages/add-task/add-task.html',
-  providers: [RollsService, AddTaskService]
+  providers: [AddTaskService]
 })
 export class AddTask {
   private duedate: any;
@@ -21,22 +21,21 @@ export class AddTask {
   private rolls: any;
   private title: any;
 
-  constructor(private viewCtrl: ViewController, private rollsService: RollsService, private addTaskService: AddTaskService) {
+  constructor(private viewCtrl: ViewController, private myProvider: MyProvider, private addTaskService: AddTaskService) {
   	this.viewCtrl = viewCtrl;
   	this.populateRolls();
   }
 
   populateRolls() {
-	this.rollsService.load().then(data => {
+	this.myProvider.loadRolls().then(data => {
 	   	this.rolls = data[0].syncrolls;
+		console.log(this.rolls);
 	});
   }
 
   submit() {
-	console.log(this.course);
-	console.log(this.title);
-	console.log(this.details);
-	this.addTaskService.load(encodeURI(this.course), encodeURI(this.title), encodeURI(this.details), encodeURI(this.duedate), encodeURI(this.duetime)).then(data => {
+	console.log('Course ' + this.course);
+	this.addTaskService.load(encodeURIComponent(this.course), encodeURIComponent(this.title), encodeURIComponent(this.details), encodeURIComponent(this.duedate), encodeURIComponent(this.duetime)).then(data => {
 		this.viewCtrl.dismiss();
 	});
   }
