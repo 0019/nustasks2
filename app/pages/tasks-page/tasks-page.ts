@@ -33,8 +33,6 @@ export class TasksPage {
 			arr = arr.concat(roll);
 		});
 		this.tasks = arr;
-		console.log(data);
-		console.log(arr);
 	});
   }
 

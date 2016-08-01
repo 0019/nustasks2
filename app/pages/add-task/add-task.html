@@ -4,29 +4,36 @@
   See https://angular.io/docs/ts/latest/api/core/ComponentMetadata-class.html
   for more info on Angular 2 Components.
 -->
+<ion-content>
 <ion-item>
 	<ion-label>Course</ion-label>
-	<ion-input type="text"></ion-input>
+	<ion-select [(ngModel)]="course">
+		<ion-option *ngFor="#roll of rolls">
+			{{roll}}
+		</ion-option>
+	</ion-select>
 </ion-item>
 
 <ion-item>
 	<ion-label>Task Title</ion-label>
-	<ion-input type="text"></ion-input>
+	<ion-input type="text" [(ngModel)]="title"></ion-input>
 </ion-item>
 
 <ion-item>
 	<ion-label>Details</ion-label>
-	<ion-input type="text"></ion-input>
+	<ion-input type="text" [(ngModel)]="details"></ion-input>
 </ion-item>
 
 <ion-item>
 	<ion-label>Due Date</ion-label>
-	<ion-datetime displayFormat="DDDD DD/MM/YYYY" pickerFormat="MMM DD"></ion-datetime>
+	<ion-datetime displayFormat="D MMM YYYY" pickerFormat="D MMM YYYY" [(ngModel)]="duedate"></ion-datetime>
 </ion-item>
 
 <ion-item>
 	<ion-label>Due Time</ion-label>
-	<ion-datetime displayFormat="HH:mm" pickerFormat="HH mm"></ion-datetime>
+	<ion-datetime displayFormat="H:mm" pickerFormat="H mm" [(ngModel)]="duetime"></ion-datetime>
 </ion-item>
 
-<button secondary (click)="close()">Done</button>
+<button block secondary (click)="submit()">Submit</button>
+<button block danger (click)="cancel()">Submit</button>
+</ion-content>

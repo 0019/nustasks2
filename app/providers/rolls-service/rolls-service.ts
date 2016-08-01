@@ -17,11 +17,12 @@ export class RollsService {
   }
 
   load() {
-    if (this.data) {
+    /*
+	if (this.data) {
       // already loaded data
       return Promise.resolve(this.data);
     }
-
+	*/
     // don't have the data yet
     return new Promise(resolve => {
       // We're using Angular Http provider to request the data,

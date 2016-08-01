@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
-import {MyApp} from '../../app';
+//import {MyApp} from '../../app';
 /*
    Generated class for the LoginPagePage page.
 
@@ -15,24 +15,39 @@ import {MyApp} from '../../app';
 
 export class LoginPage {
   private url: any;
+  private ivleRef: any;
   public token: any;
+  public apiKey: any;
   
-  constructor(private nav: NavController, private apiKey: MyApp.apiKey) {
+  constructor(private nav: NavController) {
+	this.apiKey = 'rSe7yZUlJVbjo95tnZs4i';
 	this.url = 'https://ivle.nus.edu.sg/api/login/?apikey=' + this.apiKey + '&url=nustasks://';
   }
-  
+
+  onPageLoaded() {
+	var timer = setInterval(() => {
+		if (window.localStorage.getItem('token').length > 10) {
+			alert('got token in login page');
+			if (typeof this.ivleRef != 'undefined')
+				this.ivleRef.close();
+		  	clearInterval(timer);
+			this.nav.push(TabsPage);
+		}
+	}, 500);
+  }
+
   authenticate() {
 	this.token = null;
 	var target = '_blank';
 	var options = 'location=yes';
 	var url = this.url;
-	ivleRef = window.open(url, target, options);
-	var timer = setInterval(() => {
-		if (token) {
-		  	clearInterval(timer);
-			window.localStorage.setItem('token', token);
-			this.nav.push(TabsPage);
-		}
-	}, 500);
+	this.ivleRef = window.open(url, target, options);
   }
+/*
+  handleOpenUrl(url) {
+	var index = url.indexOf('=') + 1;
+	this.token = url.slice(index, url.length);
+	this.ivleRef.close();
+  }
+  */
 }

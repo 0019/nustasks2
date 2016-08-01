@@ -13,9 +13,9 @@ import {RollsService} from '../../providers/rolls-service/rolls-service';
   providers: [RollsService]
 })
 export class RollsPage {
-  public rolls: any;
+  private rolls: any;
 
-  constructor(private nav: NavController, public rollsService: RollsService) {
+  constructor(private nav: NavController, private rollsService: RollsService) {
   }
 
   onPageLoaded() {
