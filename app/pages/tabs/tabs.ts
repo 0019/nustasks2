@@ -19,4 +19,7 @@ export class TabsPage {
     this.tab2Root = RollsPage;
     this.tab3Root = SettingsPage;
   }
+
+  onPageLoaded() {
+  }
 }

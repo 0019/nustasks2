@@ -22,7 +22,7 @@ export class TasksPage {
   }
 
   onPageLoaded() {
-  	this.loadTasks();
+	this.loadTasks();
   }
 
   loadTasks() {

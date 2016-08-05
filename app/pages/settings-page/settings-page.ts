@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
+import {LoginPage} from '../login-page/login-page';
 
 /*
   Generated class for the SettingsPagePage page.
@@ -17,6 +18,7 @@ export class SettingsPage {
 
   logout() {
   	window.localStorage.removeItem('token');
-	this.nav.pop();
+  	window.location.reload();
+  	// Or: this.nav.rootNav.setRoot(LoginPage);
   }
 }

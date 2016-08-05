@@ -21,20 +21,30 @@ export class LoginPage {
   public apiKey: any;
   
   constructor(private nav: NavController) {
+	if (window.localStorage.getItem('token') != null) {
+		this.nav.setRoot(TabsPage);
+	}
+	
 	this.apiKey = 'rSe7yZUlJVbjo95tnZs4i';
 	this.url = 'https://ivle.nus.edu.sg/api/login/?apikey=' + this.apiKey + '&url=nustasks://';
   	this.ivleRef = null;
 	this.timer = null;
   }
 
+/*
   onPageLoaded() {
-	if (window.localStorage.getItem('token').length > 0) {
-		this.nav.push(TabsPage);
-	}
+	var i = 0;
+	var interval = setInterval(() => {
+		i++;
+		if (i > 0) {
+		  clearInterval(interval);
+		  if (window.localStorage.getItem('token') != null) {
+			  this.nav.push(TabsPage);
+		  }
+		}
+	}, 2000);
   }
-
-  checkLoginStatus() {
-  }
+*/
 
   authenticate() {
 	if (this.timer != null) {
@@ -46,13 +56,14 @@ export class LoginPage {
 	this.ivleRef = window.open(url, target, options);
 	
 	this.timer = setInterval(() => {
-		if (window.localStorage.getItem('token').length > 10) {
+		if (window.localStorage.getItem('token') != null) {
 		  	clearInterval(this.timer);
 			if (typeof this.ivleRef != 'undefined')
 				this.ivleRef.close();
-			this.nav.push(TabsPage); //it must have pushed a few times here. remember the bug
+			this.nav.setRoot(TabsPage); //it must have pushed a few times here. remember the bug 
 		}
 	}, 2000);
+	// Multiple push issue fixed!
   }
 /*
   handleOpenUrl(url) {
