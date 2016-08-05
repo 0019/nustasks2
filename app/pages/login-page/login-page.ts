@@ -16,12 +16,15 @@ import {TabsPage} from '../tabs/tabs';
 export class LoginPage {
   private url: any;
   private ivleRef: any;
+  private timer: any;
   public token: any;
   public apiKey: any;
   
   constructor(private nav: NavController) {
 	this.apiKey = 'rSe7yZUlJVbjo95tnZs4i';
 	this.url = 'https://ivle.nus.edu.sg/api/login/?apikey=' + this.apiKey + '&url=nustasks://';
+  	this.ivleRef = null;
+	this.timer = null;
   }
 
   onPageLoaded() {
@@ -34,21 +37,22 @@ export class LoginPage {
   }
 
   authenticate() {
+	if (this.timer != null) {
+		clearInterval(this.timer);
+	}
 	var target = '_blank';
 	var options = 'location=yes';
 	var url = this.url;
 	this.ivleRef = window.open(url, target, options);
-	var timer = setInterval(() => {
-		if (typeof this.ivleRef == 'undefined') {
-		  	clearInterval(timer);
-		}
+	
+	this.timer = setInterval(() => {
 		if (window.localStorage.getItem('token').length > 10) {
-		  	clearInterval(timer);
+		  	clearInterval(this.timer);
 			if (typeof this.ivleRef != 'undefined')
 				this.ivleRef.close();
 			this.nav.push(TabsPage); //it must have pushed a few times here. remember the bug
 		}
-	}, 100);
+	}, 2000);
   }
 /*
   handleOpenUrl(url) {

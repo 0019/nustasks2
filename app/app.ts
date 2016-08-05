@@ -3,6 +3,7 @@ import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {LoginPage} from './pages/login-page/login-page';
+import {MyProvider} from './providers/my-provider/my-provider';
 
 @Component({
   template: '<ion-nav [root]="rootPage"></ion-nav>'
@@ -20,11 +21,11 @@ export class MyApp {
 	  //window.localStorage.setItem('token', 'll');
 	  //alert(window.localStorage.getItem('token'));
 	  
-	 if (window.localStorage.getItem('token').length > 10) {
-		this.rootPage = TabsPage;
-	 } else {
+//	 if (window.localStorage.getItem('token').length > 10) {
+//		this.rootPage = TabsPage;
+//	 } else {
 		this.rootPage = LoginPage;//TabsPage;
-	 }
+//	 }
 
 	  platform.ready().then(() => {
 		  // Okay, so the platform is ready and our plugins are available.
@@ -34,4 +35,4 @@ export class MyApp {
 	}
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [MyProvider]);
