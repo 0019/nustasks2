@@ -22,9 +22,9 @@ export class MyApp {
 	  //alert(window.localStorage.getItem('token'));
 	  
 //	 if (window.localStorage.getItem('token').length > 10) {
-		this.rootPage = TabsPage;
+//		this.rootPage = TabsPage;
 //	 } else {
-//		this.rootPage = LoginPage;//TabsPage;
+		this.rootPage = LoginPage;//TabsPage;
 //	 }
 
 	  platform.ready().then(() => {

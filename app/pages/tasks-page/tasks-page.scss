@@ -1,8 +1,3 @@
-div.CS3226 {
-	background-color: red;
-	height: 0.5vh;
-}
-
 ion-content.tasks-page {
 	background-color: #EEEEEE;
 	width: 100%;
@@ -11,9 +6,10 @@ ion-content.tasks-page {
 ion-card.tasks-page {
   	height: 20%;
 	margin: 6%;
-	border-radius: 6px;
+	border-radius: 5px;
 }
 
-.scroll-content {
-	
+div.color {
+	height: 0.5vh;
+	border-radius: 2px;
 }

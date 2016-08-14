@@ -29,7 +29,10 @@ export class TasksPage {
 	var arr = [];
   	this.myProvider.loadTasks().then(data => {
 		for (var i = 0; i < (<any>data).length; i++) {
-			arr = arr.concat(data[i]);
+			for (var j = 0; j < (<any>data[i][0]).length; j++) {
+				data[i][0][j] = [data[i][0][j], data[i][1]];
+			}
+			arr = arr.concat(data[i][0]);
 		}
 		this.tasks = arr;
 	});

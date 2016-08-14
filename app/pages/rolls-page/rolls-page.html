@@ -6,14 +6,14 @@
 -->
 <ion-header>
 <ion-navbar>
-  <ion-title>Channels</ion-title>
+  <ion-title>Modules</ion-title>
 </ion-navbar>
 </ion-header>
 
 <ion-content padding class="rolls-page">
-<ion-card *ngFor="let roll of rolls">
+<ion-card *ngFor="let roll of rolls" [ngStyle]="{'background-color': roll[1]}">
 	<ion-card-header>
-		{{roll}}
+		{{roll[0]}}
 	</ion-card-header>
 </ion-card>
 </ion-content>

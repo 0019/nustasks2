@@ -19,11 +19,11 @@
 <ion-content padding class="tasks-page">
 	<ion-refresher pulling-text="Pull to refresh..." on-refresh="loadTasks()"></ion-refresher>
 	<ion-card class="tasks-page" *ngFor="let task of tasks">
-		<div class="{{task.Syncroll}}"></div>
-	  	<ion-card-header>{{task.Title}}</ion-card-header>
+		<div class="color" [ngStyle]="{'background-color': task[1]}"></div>
+		<ion-card-header>{{task[0].Title}}</ion-card-header>
 			<ion-item>
-			Due: {{task.Duedate}} {{task.Duetime}}<br /> 
-			Course: {{task.Syncroll}}
+			Due: {{task[0].Duedate}} {{task[0].Duetime}}<br /> 
+			Course: {{task[0].Syncroll}}
 		</ion-item>
 	</ion-card>
 </ion-content>
