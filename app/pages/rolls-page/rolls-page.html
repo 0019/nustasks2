@@ -11,9 +11,7 @@
 </ion-header>
 
 <ion-content padding class="rolls-page">
-<ion-card *ngFor="let roll of rolls" [ngStyle]="{'background-color': roll[1]}">
-	<ion-card-header>
-		{{roll[0]}}
-	</ion-card-header>
+<ion-card class="rolls-page" *ngFor="let roll of rolls" [ngStyle]="{'background-color': roll[1]}">
+	<ion-card-header [ngStyle]="{'font-size': '200%'}">{{roll[0]}}</ion-card-header>
 </ion-card>
 </ion-content>

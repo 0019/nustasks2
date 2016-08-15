@@ -1,3 +1,11 @@
-.rolls-page {
+h1.rolls-page {
+  	display: inline-block;
+	padding-top: 4vh;
+	padding-left: 4vh;
+	padding-right: 4vh;
+	padding-bottom: 2vh;
+}
 
+ion-card.rolls-page {
+	border-radius: 6px;
 }
