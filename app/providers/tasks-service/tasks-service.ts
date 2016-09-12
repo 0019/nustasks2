@@ -30,10 +30,11 @@ export class TasksService {
       this.http.get('http://128.199.82.176:3000/tasks/?token=' + window.localStorage.getItem('token'))
         .map(res => res.json())
         .subscribe(data => {
+			console.log(data);
           // we've got back the raw data, now generate the core schedule data
           // and save the data for later reference
-          this.data = data;
-          resolve(this.data);
+          	this.data = data;
+          	resolve(this.data);
         });
     });
   }
