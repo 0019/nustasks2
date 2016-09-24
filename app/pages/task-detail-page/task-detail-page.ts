@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
+import {Page, NavController, NavParams} from 'ionic-angular';
 /*
   Generated class for the TaskDetailPagePage page.
 
@@ -10,10 +9,11 @@ import { NavController } from 'ionic-angular';
 @Component({
   templateUrl: 'build/pages/task-detail-page/task-detail-page.html',
 })
-export class TaskDetailPagePage {
+export class TaskDetailPage {
+  task: any;
 
-  constructor(private nav: NavController) {
-
+  constructor(public navParams: NavParams) {
+    this.task = navParams.data;
   }
 
 }

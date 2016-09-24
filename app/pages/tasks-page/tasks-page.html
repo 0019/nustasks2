@@ -20,7 +20,7 @@
 	<!--
 	<ion-refresher pulling-text="Pull to refresh..." on-refresh="loadTasks()"></ion-refresher>
 	-->
-	<ion-card class="tasks-page" *ngFor="let task of tasks">
+	<ion-card class="tasks-page" *ngFor="let task of tasks" (click)="goToTaskDetail(task)">
 		<div class="color" [ngStyle]="{'background-color': black}"></div>
 		<h1 class="tasks-page" [ngStyle]="{'color': black}">{{task.title}}</h1>
 		<ion-item>
@@ -28,5 +28,5 @@
 			Course: {{task.code}}
 		</ion-item>
 	</ion-card>
-	<p id="notask" ng-hide=!tasks.length>There are no tasks..</p>
+	<p id="notask" [hidden]="length > 0">There are no tasks..</p>
 </ion-content>
