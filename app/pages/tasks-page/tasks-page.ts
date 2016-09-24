@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {Modal, NavController} from 'ionic-angular';
 import {MyProvider} from '../../providers/my-provider/my-provider';
 import {AddTask} from '../../pages/add-task/add-task';
+import {TaskDetailPage} from '../task-detail-page/task-detail-page';
 
 //import {Modal, Page, NavController} from 'ionic-angular';
 /*
@@ -17,7 +18,7 @@ import {AddTask} from '../../pages/add-task/add-task';
 
 export class TasksPage {
   public tasks: any;
-
+  public length: any;
   constructor(private nav: NavController, public myProvider: MyProvider) {
   }
 
@@ -29,6 +30,7 @@ export class TasksPage {
 	//var arr = [];
   	this.myProvider.loadTasks().then(data => {
 		this.tasks = data;
+    this.length = (this.tasks).length;
 		/*
 		this.noTask = "";
 		if (this.tasks.length == 0) {
@@ -50,5 +52,11 @@ export class TasksPage {
   addTask() {
   	let modal = Modal.create(AddTask);
 	this.nav.present(modal);
+  }
+
+  goToTaskDetail(taskData) {
+    // go to the session detail page
+    // and pass in the session data
+    this.nav.push(TaskDetailPage, taskData);
   }
 }
