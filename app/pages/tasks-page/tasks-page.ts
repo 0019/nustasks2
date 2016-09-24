@@ -26,15 +26,24 @@ export class TasksPage {
   }
 
   loadTasks() {
-	var arr = [];
+	//var arr = [];
   	this.myProvider.loadTasks().then(data => {
+		this.tasks = data;
+		/*
+		this.noTask = "";
+		if (this.tasks.length == 0) {
+			this.noTask = "";
+		}
+		*/
+		console.log(data);
+		/*
 		for (var i = 0; i < (<any>data).length; i++) {
 			for (var j = 0; j < (<any>data[i][0]).length; j++) {
 				data[i][0][j] = [data[i][0][j], data[i][1]];
 			}
 			arr = arr.concat(data[i][0]);
 		}
-		this.tasks = arr;
+		*/
 	});
   }
 

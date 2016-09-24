@@ -28,7 +28,7 @@ export class AddTask {
 
   populateRolls() {
 	this.myProvider.loadRolls().then(data => {
-	   	this.rolls = data[0].syncrolls;
+	   	this.rolls = data;
 		console.log(this.rolls);
 	});
   }
