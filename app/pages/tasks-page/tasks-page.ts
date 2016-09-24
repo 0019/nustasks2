@@ -6,49 +6,63 @@ import {AddTask} from '../../pages/add-task/add-task';
 
 //import {Modal, Page, NavController} from 'ionic-angular';
 /*
-  Generated class for the TasksPagePage page.
+   Generated class for the TasksPagePage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+   See http://ionicframework.com/docs/v2/components/#navigation for more info on
+   Ionic pages and navigation.
+ */
 @Component({
-  templateUrl: 'build/pages/tasks-page/tasks-page.html',
+templateUrl: 'build/pages/tasks-page/tasks-page.html',
 })
 
 export class TasksPage {
-  public tasks: any;
+	public tasks: any;
 
-  constructor(private nav: NavController, public myProvider: MyProvider) {
-  }
+	constructor(private nav: NavController, public myProvider: MyProvider) {
+	}
 
-  onPageLoaded() {
-	this.loadTasks();
-  }
+	onPageLoaded() {
+		this.loadTasks();
+	}
 
-  loadTasks() {
-	//var arr = [];
-  	this.myProvider.loadTasks().then(data => {
-		this.tasks = data;
-		/*
-		this.noTask = "";
-		if (this.tasks.length == 0) {
-			this.noTask = "";
-		}
-		*/
-		console.log(data);
-		/*
-		for (var i = 0; i < (<any>data).length; i++) {
-			for (var j = 0; j < (<any>data[i][0]).length; j++) {
-				data[i][0][j] = [data[i][0][j], data[i][1]];
+	loadTasks() {
+		//var arr = [];
+		this.myProvider.loadTasks().then(data => {
+			this.tasks = data;
+			var that = this;
+			this.updateTimeleft(this.tasks);
+			var interval = setInterval(function() {
+				that.updateTimeleft(that.tasks);
+			}, 1000);
+		});
+	}
+
+	updateTimeleft(tasks) {
+		tasks.forEach(function(task) {
+			var due: any;
+			var time: any;
+			var hs: any;
+			var s: any;
+			var m: any;
+			var h: any;
+			var d: any;
+
+			due = new Date(task.deadline);
+			time = due - Date.now();
+			//hs = ('0' + Math.floor(time % 1000 / 10)).slice(-2);
+			s = ('0' + Math.floor(time / 1000) % 60).slice(-2);
+			m = ('0' + Math.floor(time / 1000 / 60) % 60).slice(-2);
+			h = ('0' + Math.floor(time / 1000 / 60 / 60) % 24).slice(-2);
+			d = Math.floor(time / 1000 / 60 / 60 / 24);
+			task.timeleft = (d == 0? "" : d + " Day" + (d < 2 ? "":"s") + ", ") + h + ":" + m + ":" + s;
+			if (time < 0) {
+				task.timeleft = "Mission failed.";
 			}
-			arr = arr.concat(data[i][0]);
-		}
-		*/
-	});
-  }
+		});
+	}
 
-  addTask() {
-  	let modal = Modal.create(AddTask);
-	this.nav.present(modal);
-  }
+	addTask() {
+		let modal = Modal.create(AddTask);
+		this.nav.present(modal);
+	}
 }

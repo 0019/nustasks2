@@ -34,8 +34,12 @@ export class AddTask {
   }
 
   submit() {
-	console.log('Course ' + this.course);
-	this.addTaskService.load(encodeURIComponent(this.course), encodeURIComponent(this.title), encodeURIComponent(this.details), encodeURIComponent(this.duedate), encodeURIComponent(this.duetime)).then(data => {
+	var course = encodeURIComponent(this.course);
+	var title = encodeURIComponent(this.title);
+	var details = encodeURIComponent(this.details);
+	var due = encodeURIComponent(this.duedate + "T" + this.duetime + "+08:00");
+	console.log(due);
+	this.addTaskService.load(course, title, details, due).then(data => {
 		this.viewCtrl.dismiss();
 	});
   }
