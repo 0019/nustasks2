@@ -30,13 +30,17 @@ export class TasksPage {
 	loadTasks() {
 		//var arr = [];
 		this.myProvider.loadTasks().then(data => {
+
 				this.tasks = data;
 				var that = this;
 				this.updateTimeleft(this.tasks);
 				var interval = setInterval(function() {
 					that.updateTimeleft(that.tasks);
 					}, 1000);
+				this.length=this.tasks.length;
+				console.log(this.length);
 				});
+		
 	}
 
 	updateTimeleft(tasks) {
